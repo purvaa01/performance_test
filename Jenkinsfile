@@ -13,14 +13,20 @@ pipeline {
             }
         }
 
-        stage('Run Performance Test') {
-            steps {
-                sh '''
-                mkdir -p report
-                ${JMETER_PATH} -n -t p_test.jmx -l results.jtl -e -o report
-                '''
-            }
-        }
+       stage('Performance Testing') {
+           steps {
+               sh '''
+               rm -rf report
+               mkdir report
+
+               /opt/apache-jmeter-5.6.3/bin/jmeter \
+               -n -t p_test.jmx \
+               -l results.jtl \
+               -e -o report
+               '''
+           }
+       }
+
     }
 
     post {
