@@ -17,6 +17,8 @@ pipeline {
            steps {
                sh '''
                rm -rf report
+               rm -f results.jtl
+
                mkdir report
 
                /opt/apache-jmeter-5.6.3/bin/jmeter \
@@ -26,6 +28,7 @@ pipeline {
                '''
            }
        }
+
 
     }
 
